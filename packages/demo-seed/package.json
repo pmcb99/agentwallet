@@ -1,0 +1,17 @@
+{
+  "name": "@gentwallet/demo-seed",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "seed": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@gentwallet/wallet-core": "*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
