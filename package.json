@@ -1,0 +1,17 @@
+{
+  "name": "gentwallet",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "dashboard"
+  ],
+  "scripts": {
+    "dev:auth": "npm run dev -w @gentwallet/auth-service",
+    "dev:dashboard": "npm run dev -w dashboard",
+    "dev:mcp": "npm run start -w @gentwallet/mcp-server",
+    "test": "npm run test -w @gentwallet/wallet-core && npm run test -w @gentwallet/auth-service",
+    "db:generate": "npm run db:generate -w @gentwallet/wallet-core",
+    "db:migrate": "npm run db:migrate -w @gentwallet/wallet-core",
+    "seed": "npm run seed -w @gentwallet/demo-seed"
+  }
+}
