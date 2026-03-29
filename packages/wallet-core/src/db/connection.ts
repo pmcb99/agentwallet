@@ -1,11 +1,19 @@
+import { resolve } from "path";
+import { fileURLToPath } from "url";
 import Database from "better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import * as schema from "./schema.js";
 
 let _db: ReturnType<typeof createDb> | null = null;
 
+function defaultDbPath() {
+  // Always resolve relative to the monorepo root so all packages share one db
+  const walletCoreSrc = fileURLToPath(new URL(".", import.meta.url));
+  return resolve(walletCoreSrc, "../../../..", "gentwallet.db");
+}
+
 function createDb(dbPath?: string) {
-  const sqlite = new Database(dbPath ?? "gentwallet.db");
+  const sqlite = new Database(dbPath ?? process.env.DB_PATH ?? defaultDbPath());
   sqlite.pragma("journal_mode = WAL");
   sqlite.pragma("foreign_keys = ON");
   return drizzle(sqlite, { schema });
